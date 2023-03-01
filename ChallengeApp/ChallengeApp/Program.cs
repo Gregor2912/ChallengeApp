@@ -1,71 +1,57 @@
-﻿int number = 4094662;
-string myNumberInString = number.ToString();
-char[] letters = myNumberInString.ToArray();
+﻿
 
-int licz0 = 0;
-int licz1 = 0;
-int licz2 = 0;
-int licz3 = 0;
-int licz4 = 0;
-int licz5 = 0;
-int licz6 = 0;
-int licz7 = 0;
-int licz8 = 0;
-int licz9 = 0;
-foreach (char slowo in letters)
+Employee pracownik1 = new Employee("Agata", "Suchwałko", 32);
+Employee pracownik2 = new Employee("Robert", "Przybysz", 24);
+Employee pracownik3 = new Employee("Julia", "Arciszewska", 44);
+
+pracownik1.AddScore(5);
+pracownik1.AddScore(4);
+pracownik1.AddScore(6);
+pracownik1.AddScore(1);
+pracownik1.AddScore(4);
+pracownik2.AddScore(2);
+pracownik2.AddScore(2);
+pracownik2.AddScore(3);
+pracownik2.AddScore(1);
+pracownik2.AddScore(5);
+pracownik3.AddScore(5);
+pracownik3.AddScore(1);
+pracownik3.AddScore(1);
+pracownik3.AddScore(1);
+pracownik3.AddScore(4);
+if (pracownik1.punkty > pracownik2.punkty&&pracownik1.punkty>pracownik3.punkty)
 {
-    if (slowo == '0')
-    {
-        licz0++;
-    }
-    else if (slowo == '1')
-    {
-        licz1++;
-    }
-    else if (slowo == '2')
-    {
-        licz2++;
-    }
-    else if (slowo == '3')
-    {
-        licz3++;
-    }
-    else if (slowo == '4')
-    {
-        licz4++;
-    }
-    else if (slowo == '5')
-    {
-        licz5++;
-    }
-    else if (slowo == '6')
-    {
-        licz6++;
-    }
-    else if (slowo == '7')
-    {
-        licz7++;
-    }
-    else if (slowo == '8')
-    {
-        licz8++;
-    }
-    else if (slowo == '9')
-    {
-        licz9++;
-    }
+    Console.WriteLine("Wynik i dane"+pracownik1.punkty+" "+pracownik1.Imie+ " " + pracownik1.nazwisko+ " " + pracownik1.wiek);
 }
-Console.WriteLine(number);
-
-    Console.WriteLine("Liczba 0 wystąpi =>" + licz0);
-Console.WriteLine("Liczba 1 wystąpi =>" + licz1);
-Console.WriteLine("Liczba 2 wystąpi =>" + licz2);
-Console.WriteLine("Liczba 3 wystąpi =>" + licz3);
-Console.WriteLine("Liczba 4 wystąpi =>" + licz4);
-Console.WriteLine("Liczba 5 wystąpi =>" + licz5);
-Console.WriteLine("Liczba 6 wystąpi =>" + licz6);
-Console.WriteLine("Liczba 7 wystąpi =>" + licz7);
-Console.WriteLine("Liczba 8 wystąpi =>" + licz8);
-Console.WriteLine("Liczba 9 wystąpi =>" + licz9);
+else if (pracownik2.punkty > pracownik1.punkty && pracownik1.punkty > pracownik3.punkty)
+{
+    Console.WriteLine("Wynik i dane"+pracownik2.punkty + " " + pracownik2.Imie + " " + pracownik2.nazwisko + " " + pracownik2.wiek);
+}
+else if (pracownik3.punkty > pracownik1.punkty && pracownik1.punkty > pracownik3.punkty)
+{
+    Console.WriteLine("Wynik i dane"+pracownik3.punkty + " " + pracownik3.Imie + " " + pracownik3.nazwisko + " " + pracownik3.wiek);
+}
 
 
+class Employee
+{
+    private List<int> pkt = new List<int>();
+
+    public Employee(string imie, string nazwisko, int wiek)
+    {
+        this.Imie = imie;
+        this.nazwisko = nazwisko;
+        this.wiek = wiek;
+    }
+
+    public string Imie { get; private set; }
+    public string nazwisko { get; private set; }
+    public int wiek { get; private set; }
+    public int punkty { get { return this.pkt.Sum(); } }
+
+    public void AddScore(int pkt)
+    {
+        this.pkt.Add(pkt);
+    }
+
+}
