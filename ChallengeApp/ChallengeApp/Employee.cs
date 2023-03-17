@@ -1,4 +1,6 @@
-﻿namespace ChallengeApp
+﻿using System.Xml.Linq;
+
+namespace ChallengeApp
 {
     public class Employee
     {
@@ -16,9 +18,41 @@
 
         public void AddGrade(float grade)
         {
-            this.grades.Add(grade);
+            double valueInInt = (double)grade;
+
+
+            if (grade >= 0 && grade <= 100)
+            {
+                this.grades.Add(grade);
+            }
+            else
+            {
+                Console.WriteLine("Invalid grade value");
+            }
 
         }
+        public void AddGrade(string grade)
+        {
+            if (byte.TryParse(grade, out byte result))
+            {
+                this.AddGrade(result);
+            }
+            else
+            {
+                Console.WriteLine("String is not a float");
+            }
+        }
+        public void AddGrade(double grade)
+        {
+            float ValueDouble = (float)grade;
+            this.AddGrade(ValueDouble);
+        }
+        public void AddGrade(short grade)
+        {
+            float ValueShort = (float)grade;
+            this.AddGrade(ValueShort);
+        }
+
         public Statistics GetStatistics()
         {
             var statistics = new Statistics();
